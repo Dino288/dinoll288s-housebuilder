@@ -26,3 +26,28 @@ Survival mode requires the selected building blocks to be available in your hotb
 - Minecraft: 1.20.1
 - Forge: 47.x
 - Side: Client only
+
+## Release Build
+
+Run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\build-release.ps1
+```
+
+The upload-ready file will be written to:
+
+```text
+dist\dinoll288s_housebuilder-0.1.0-forge-1.20.1.jar
+```
+
+## CurseForge Upload
+
+CurseForge uploads require an author API token and the project ID from the project URL.
+
+```powershell
+$env:CURSEFORGE_TOKEN = "your-token-here"
+powershell -ExecutionPolicy Bypass -File .\scripts\upload-curseforge.ps1 -ProjectId "your-project-id"
+```
+
+The upload is tagged as `1.20.1`, `Forge`, and `Client`.
