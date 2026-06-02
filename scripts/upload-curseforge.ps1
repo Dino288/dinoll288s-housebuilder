@@ -9,7 +9,8 @@ param(
     [string]$DisplayName = "DinoLL288s Housebuilder 0.1.0 - Forge 1.20.1",
     [string]$ReleaseType = "beta",
     [string[]]$GameVersionNames = @("1.20.1", "Forge", "Client"),
-    [string]$ChangelogPath = "RELEASE_NOTES.md"
+    [string]$ChangelogPath = "RELEASE_NOTES.md",
+    [int]$TimeoutSeconds = 120
 )
 
 $ErrorActionPreference = "Stop"
@@ -32,6 +33,7 @@ $metadata = @{
 
 $uri = "https://minecraft.curseforge.com/api/projects/$ProjectId/upload-file"
 $client = [System.Net.Http.HttpClient]::new()
+$client.Timeout = [TimeSpan]::FromSeconds($TimeoutSeconds)
 $client.DefaultRequestHeaders.Add("X-Api-Token", $Token)
 $form = [System.Net.Http.MultipartFormDataContent]::new()
 
